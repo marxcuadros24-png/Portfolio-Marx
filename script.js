@@ -134,7 +134,6 @@ window.addEventListener('scroll', () => {
 // ===== EFECTO DE ESCRITURA (TYPING) =====
 const texts = [
     'Creando experiencias digitales únicas',
-    'Desarrollando el futuro del web',
     'Transformando ideas en código',
     'Innovación y creatividad'
 ];
@@ -190,11 +189,6 @@ document.querySelectorAll('.skill-item').forEach(skill => {
     });
 });
 
-// ===== EFECTO PARALLAX DESACTIVADO =====
-// Se removió el efecto parallax para evitar que los elementos se muevan con el scroll
-
-// ===== EFECTO DE CAMBIO DE COLOR REMOVIDO =====
-// Se quitó el hue-rotate para que la foto mantenga sus colores naturales
 
 // ===== CONTADOR DE ANIMACIÓN PARA ESTADÍSTICAS (OPCIONAL) =====
 function animateValue(element, start, end, duration) {
@@ -260,8 +254,8 @@ document.querySelectorAll('.project-card').forEach(card => {
 // ===== PRELOADER (OPCIONAL) =====
 window.addEventListener('load', () => {
     document.body.style.overflow = 'auto';
-    console.log('🚀 Portfolio cargado con éxito!');
-    console.log('💻 Desarrollado por Marx Cuadros');
+    console.log('Portfolio cargado con éxito!');
+    console.log('Desarrollado por Marx Cuadros');
 });
 
 // ===== DETECTAR TEMA DEL SISTEMA (OPCIONAL) =====
@@ -270,6 +264,6 @@ if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').match
 }
 
 // ===== EASTER EGG: MENSAJE EN CONSOLA =====
-console.log('%c¡Hola Developer! 👋', 'color: #00fff7; font-size: 20px; font-weight: bold;');
-console.log('%c¿Curioseando el código? Me gusta tu estilo 😎', 'color: #00ff88; font-size: 14px;');
+console.log('%c¡Hola Developer! ', 'color: #00fff7; font-size: 20px; font-weight: bold;');
+console.log('%c¿Curioseando el código? Me gusta tu estilo ', 'color: #00ff88; font-size: 14px;');
 console.log('%cContáctame: marxcuadros24@gmail.com', 'color: #ff00ff; font-size: 12px;');
