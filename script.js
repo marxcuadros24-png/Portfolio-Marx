@@ -1,9 +1,106 @@
+// ===== INICIALIZAR AOS (ANIMATE ON SCROLL) =====
+AOS.init({
+    duration: 1000,
+    once: false,
+    mirror: true,
+    offset: 100
+});
+
+// ===== CONFIGURAR PARTICLES.JS =====
+particlesJS('particles-js', {
+    particles: {
+        number: {
+            value: 80,
+            density: {
+                enable: true,
+                value_area: 800
+            }
+        },
+        color: {
+            value: ['#00fff7', '#00ff88', '#ff00ff']
+        },
+        shape: {
+            type: 'circle'
+        },
+        opacity: {
+            value: 0.5,
+            random: true,
+            anim: {
+                enable: true,
+                speed: 1,
+                opacity_min: 0.1,
+                sync: false
+            }
+        },
+        size: {
+            value: 3,
+            random: true,
+            anim: {
+                enable: true,
+                speed: 2,
+                size_min: 0.1,
+                sync: false
+            }
+        },
+        line_linked: {
+            enable: true,
+            distance: 150,
+            color: '#00fff7',
+            opacity: 0.2,
+            width: 1
+        },
+        move: {
+            enable: true,
+            speed: 2,
+            direction: 'none',
+            random: false,
+            straight: false,
+            out_mode: 'out',
+            bounce: false
+        }
+    },
+    interactivity: {
+        detect_on: 'canvas',
+        events: {
+            onhover: {
+                enable: true,
+                mode: 'grab'
+            },
+            onclick: {
+                enable: true,
+                mode: 'push'
+            },
+            resize: true
+        },
+        modes: {
+            grab: {
+                distance: 140,
+                line_linked: {
+                    opacity: 0.5
+                }
+            },
+            push: {
+                particles_nb: 4
+            }
+        }
+    },
+    retina_detect: true
+});
+
 // ===== SMOOTH SCROLL PARA NAVEGACIÓN =====
-document.querySelectorAll('nav a').forEach(anchor => {
+document.querySelectorAll('.nav-link').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
         const targetSection = document.querySelector(targetId);
+        
+        // Remover clase active de todos los links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+        });
+        
+        // Agregar clase active al link clickeado
+        this.classList.add('active');
         
         targetSection.scrollIntoView({
             behavior: 'smooth',
@@ -12,7 +109,7 @@ document.querySelectorAll('nav a').forEach(anchor => {
     });
 });
 
-// ===== HIGHLIGHT ACTIVO EN NAV =====
+// ===== HIGHLIGHT ACTIVO EN NAV AL SCROLL =====
 window.addEventListener('scroll', () => {
     let current = '';
     const sections = document.querySelectorAll('section');
@@ -21,12 +118,12 @@ window.addEventListener('scroll', () => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
         
-        if (scrollY >= (sectionTop - 200)) {
+        if (scrollY >= (sectionTop - 300)) {
             current = section.getAttribute('id');
         }
     });
     
-    document.querySelectorAll('nav a').forEach(link => {
+    document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href') === `#${current}`) {
             link.classList.add('active');
@@ -34,122 +131,145 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// ===== ANIMACIÓN DE ENTRADA PARA ELEMENTOS =====
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
+// ===== EFECTO DE ESCRITURA (TYPING) =====
+const texts = [
+    'Creando experiencias digitales únicas',
+    'Desarrollando el futuro del web',
+    'Transformando ideas en código',
+    'Innovación y creatividad'
+];
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+let textIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typingSpeed = 100;
+
+function typeEffect() {
+    const typingElement = document.querySelector('.typing-text');
+    const currentText = texts[textIndex];
+    
+    if (!isDeleting) {
+        typingElement.textContent = currentText.substring(0, charIndex);
+        charIndex++;
+        
+        if (charIndex > currentText.length) {
+            isDeleting = true;
+            typingSpeed = 50;
+            setTimeout(typeEffect, 2000);
+            return;
         }
-    });
-}, observerOptions);
+    } else {
+        typingElement.textContent = currentText.substring(0, charIndex);
+        charIndex--;
+        
+        if (charIndex === 0) {
+            isDeleting = false;
+            textIndex = (textIndex + 1) % texts.length;
+            typingSpeed = 100;
+            setTimeout(typeEffect, 500);
+            return;
+        }
+    }
+    
+    setTimeout(typeEffect, typingSpeed);
+}
 
-// Observar elementos que queremos animar
-document.querySelectorAll('.skill-category, .project-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'all 0.6s ease';
-    observer.observe(el);
+// Iniciar efecto de escritura cuando cargue la página
+window.addEventListener('load', () => {
+    setTimeout(typeEffect, 1000);
 });
 
-// ===== EFECTO CURSOR (OPCIONAL) =====
+// ===== ANIMACIÓN DE SKILLS AL HACER HOVER =====
+document.querySelectorAll('.skill-item').forEach(skill => {
+    skill.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-5px) rotate(3deg)';
+    });
+    
+    skill.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) rotate(0)';
+    });
+});
+
+// ===== EFECTO PARALLAX DESACTIVADO =====
+// Se removió el efecto parallax para evitar que los elementos se muevan con el scroll
+
+// ===== EFECTO DE CAMBIO DE COLOR REMOVIDO =====
+// Se quitó el hue-rotate para que la foto mantenga sus colores naturales
+
+// ===== CONTADOR DE ANIMACIÓN PARA ESTADÍSTICAS (OPCIONAL) =====
+function animateValue(element, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        element.textContent = Math.floor(progress * (end - start) + start);
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        }
+    };
+    window.requestAnimationFrame(step);
+}
+
+// ===== EFECTOS DE CURSOR PERSONALIZADO (OPCIONAL) =====
 const cursor = document.createElement('div');
-cursor.classList.add('custom-cursor');
+cursor.className = 'custom-cursor';
+cursor.style.cssText = `
+    width: 20px;
+    height: 20px;
+    border: 2px solid #00fff7;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s;
+    display: none;
+`;
 document.body.appendChild(cursor);
 
 document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
+    cursor.style.left = e.clientX - 10 + 'px';
+    cursor.style.top = e.clientY - 10 + 'px';
+    cursor.style.display = 'block';
 });
 
-// ===== PARTÍCULAS DE FONDO (CANVAS) =====
-const canvas = document.createElement('canvas');
-canvas.id = 'particles-canvas';
-document.body.prepend(canvas);
-
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-canvas.style.position = 'fixed';
-canvas.style.top = '0';
-canvas.style.left = '0';
-canvas.style.zIndex = '-1';
-canvas.style.pointerEvents = 'none';
-
-const particles = [];
-const particleCount = 50;
-
-class Particle {
-    constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = Math.random() * 0.5 - 0.25;
-        this.speedY = Math.random() * 0.5 - 0.25;
-        this.opacity = Math.random() * 0.5 + 0.2;
-    }
-
-    update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
-        if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
-    }
-
-    draw() {
-        ctx.fillStyle = `rgba(0, 255, 247, ${this.opacity})`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-    }
-}
-
-for (let i = 0; i < particleCount; i++) {
-    particles.push(new Particle());
-}
-
-function animateParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+// Agrandar cursor en hover de links
+document.querySelectorAll('a, button, .skill-item').forEach(element => {
+    element.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'scale(2)';
+        cursor.style.backgroundColor = 'rgba(0, 255, 247, 0.2)';
+    });
     
-    particles.forEach(particle => {
-        particle.update();
-        particle.draw();
+    element.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'scale(1)';
+        cursor.style.backgroundColor = 'transparent';
     });
-
-    // Dibujar líneas entre partículas cercanas
-    particles.forEach((p1, i) => {
-        particles.slice(i + 1).forEach(p2 => {
-            const dx = p1.x - p2.x;
-            const dy = p1.y - p2.y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-
-            if (distance < 120) {
-                ctx.strokeStyle = `rgba(0, 255, 247, ${0.15 * (1 - distance / 120)})`;
-                ctx.lineWidth = 1;
-                ctx.beginPath();
-                ctx.moveTo(p1.x, p1.y);
-                ctx.lineTo(p2.x, p2.y);
-                ctx.stroke();
-            }
-        });
-    });
-
-    requestAnimationFrame(animateParticles);
-}
-
-animateParticles();
-
-// Ajustar canvas al redimensionar ventana
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
 });
 
-console.log('Portfolio cargado correctamente ✨');
+// ===== EFECTO DE BRILLO EN PROJECT CARDS =====
+document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+    });
+});
+
+// ===== PRELOADER (OPCIONAL) =====
+window.addEventListener('load', () => {
+    document.body.style.overflow = 'auto';
+    console.log('🚀 Portfolio cargado con éxito!');
+    console.log('💻 Desarrollado por Marx Cuadros');
+});
+
+// ===== DETECTAR TEMA DEL SISTEMA (OPCIONAL) =====
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    console.log('🌙 Modo oscuro detectado');
+}
+
+// ===== EASTER EGG: MENSAJE EN CONSOLA =====
+console.log('%c¡Hola Developer! 👋', 'color: #00fff7; font-size: 20px; font-weight: bold;');
+console.log('%c¿Curioseando el código? Me gusta tu estilo 😎', 'color: #00ff88; font-size: 14px;');
+console.log('%cContáctame: marxcuadros24@gmail.com', 'color: #ff00ff; font-size: 12px;');

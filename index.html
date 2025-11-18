@@ -5,134 +5,176 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marx Cuadros - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- AOS - Animate On Scroll -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <!-- Particles.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
-    <!-- Navegación -->
-    <nav>
-        <ul>
-            <li><a href="#home">Inicio</a></li>
-            <li><a href="#about">Sobre Mí</a></li>
-            <li><a href="#skills">Habilidades</a></li>
-            <li><a href="#projects">Proyectos</a></li>
-            <li><a href="#contact">Contacto</a></li>
+    <!-- Fondo de partículas -->
+    <div id="particles-js"></div>
+
+    <!-- Navegación Vertical -->
+    <nav class="sidebar">
+        <div class="logo">MC</div>
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-link active">
+                
+                <span class="nav-text">Inicio</span>
+            </a></li>
+            <li><a href="#about" class="nav-link">
+                
+                <span class="nav-text">Sobre Mí</span>
+            </a></li>
+            <li><a href="#skills" class="nav-link">
+                
+                <span class="nav-text">Habilidades</span>
+            </a></li>
+            <li><a href="#projects" class="nav-link">
+                
+                <span class="nav-text">Proyectos</span>
+            </a></li>
+            <li><a href="#contact" class="nav-link">
+                
+                <span class="nav-text">Contacto</span>
+            </a></li>
         </ul>
+        <div class="nav-footer">
+            <a href="https://github.com/marxcuadros24-png" target="_blank" class="social-icon">
+                <span>💻</span>
+            </a>
+            <a href="mailto:marxcuadros24@gmail.com" class="social-icon">
+                <span>✉️</span>
+            </a>
+        </div>
     </nav>
 
-    <!-- Sección Inicio -->
-    <section id="home">
-        <div class="container">
-            <div class="profile-photo">
-                <img src="tu-foto.jpg" alt="Marx Cuadros">
-            </div>
-            <h1 class="home-title">Marx Cuadros</h1>
-            <p class="home-subtitle">Desarrollador Full Stack</p>
-            <p class="home-description">
-                Apasionado por crear soluciones innovadoras y transformar ideas en aplicaciones funcionales
-            </p>
-            <div class="social-links">
-                <a href="https://github.com/marxcuadros24-png" target="_blank" class="social-btn">GitHub</a>
-                <a href="mailto:marxcuadros24@gmail.com" class="social-btn">Correo</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección Sobre Mí -->
-    <section id="about">
-        <div class="container">
-            <h2>Sobre Mí</h2>
-            <div class="about-content">
-                <p class="about-text">
-                    Soy un desarrollador Full Stack apasionado por crear soluciones innovadoras. 
-                    Me especializo en el desarrollo web tanto frontend como backend, con experiencia 
-                    en múltiples tecnologías y frameworks modernos. Mi objetivo es construir 
-                    aplicaciones que no solo funcionen bien, sino que también ofrezcan una 
-                    excelente experiencia de usuario.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección Habilidades -->
-    <section id="skills">
-        <div class="container">
-            <h2>Habilidades Técnicas</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Lenguajes</h3>
-                    <ul class="skill-list">
-                        <li class="skill-item">Java</li>
-                        <li class="skill-item">JavaScript</li>
-                        <li class="skill-item">C#</li>
-                        <li class="skill-item">HTML</li>
-                        <li class="skill-item">CSS</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Frameworks & Librerías</h3>
-                    <ul class="skill-list">
-                        <li class="skill-item">React</li>
-                        <li class="skill-item">Angular</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Bases de Datos</h3>
-                    <ul class="skill-list">
-                        <li class="skill-item">MySQL</li>
-                        <li class="skill-item">SQL Server</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección Proyectos -->
-    <section id="projects">
-        <div class="container">
-            <h2>Proyectos Destacados</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3 class="project-title">EmpleaLocal</h3>
-                    <p class="project-description">
-                        Página web de empleos desarrollada para conectar personas con oportunidades 
-                        laborales locales. Incluye sistema de búsqueda y filtrado de ofertas.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JavaScript</span>
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <!-- Sección Inicio -->
+        <section id="home">
+            <div class="container">
+                <div class="profile-photo" data-aos="zoom-in" data-aos-duration="1000">
+                    <div class="photo-border">
+                        <img src="tu-foto.jpg" alt="Marx Cuadros">
                     </div>
-                    <a href="https://marxcuadros24-png.github.io/EmpleaLocal-/" target="_blank" class="project-link">
-                        Ver Proyecto →
-                    </a>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección Contacto -->
-    <section id="contact">
-        <div class="container">
-            <h2>Contacto</h2>
-            <div class="contact-content">
-                <p class="contact-text">
-                    ¿Interesado en trabajar juntos? No dudes en contactarme
+                <h1 class="home-title" data-aos="fade-up" data-aos-delay="200">Marx Cuadros</h1>
+                <p class="home-subtitle" data-aos="fade-up" data-aos-delay="400">Desarrollador Full Stack</p>
+                <p class="home-description" data-aos="fade-up" data-aos-delay="600">
+                    Apasionado por crear soluciones innovadoras y transformar ideas en aplicaciones funcionales
                 </p>
-                <div class="contact-methods">
-                    <a href="mailto:marxcuadros24@gmail.com" class="contact-item">
-                        <span class="contact-icon">✉</span>
-                        <span>marxcuadros24@gmail.com</span>
-                    </a>
-                    <a href="https://github.com/marxcuadros24-png" target="_blank" class="contact-item">
-                        <span class="contact-icon">⚡</span>
-                        <span>github.com/marxcuadros24-png</span>
-                    </a>
+                <div class="typing-container" data-aos="fade-up" data-aos-delay="800">
+                    <span class="typing-text"></span>
+                    <span class="cursor">|</span>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
+        <!-- Sección Sobre Mí -->
+        <section id="about">
+            <div class="container">
+                <h2 data-aos="fade-right">Sobre Mí</h2>
+                <div class="about-content" data-aos="fade-up" data-aos-delay="200">
+                    <p class="about-text">
+                        Soy un desarrollador Full Stack apasionado por crear soluciones innovadoras. 
+                        Me especializo en el desarrollo web tanto frontend como backend, con experiencia 
+                        en múltiples tecnologías y frameworks modernos. Mi objetivo es construir 
+                        aplicaciones que no solo funcionen bien, sino que también ofrezcan una 
+                        excelente experiencia de usuario.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Habilidades -->
+        <section id="skills">
+            <div class="container">
+                <h2 data-aos="fade-right">Habilidades Técnicas</h2>
+                <div class="skills-grid">
+                    <div class="skill-category" data-aos="flip-left" data-aos-delay="100">
+                        
+                        <h3>Lenguajes</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item">Java</li>
+                            <li class="skill-item">JavaScript</li>
+                            <li class="skill-item">C#</li>
+                            <li class="skill-item">HTML</li>
+                            <li class="skill-item">CSS</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category" data-aos="flip-left" data-aos-delay="300">
+                        
+                        <h3>Frameworks</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item">React</li>
+                            <li class="skill-item">Angular</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category" data-aos="flip-left" data-aos-delay="500">
+                        
+                        <h3>Bases de Datos</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item">MySQL</li>
+                            <li class="skill-item">SQL Server</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Proyectos -->
+        <section id="projects">
+            <div class="container">
+                <h2 data-aos="fade-right">Proyectos Destacados</h2>
+                <div class="projects-grid">
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="project-number">01</div>
+                        <h3 class="project-title">EmpleaLocal</h3>
+                        <p class="project-description">
+                            Página web de empleos desarrollada para conectar personas con oportunidades 
+                            laborales locales. Incluye sistema de búsqueda y filtrado de ofertas.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <a href="https://marxcuadros24-png.github.io/EmpleaLocal-/" target="_blank" class="project-link">
+                            Ver Proyecto <span class="arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Contacto -->
+        <section id="contact">
+            <div class="container">
+                <h2 data-aos="fade-right">Contacto</h2>
+                <div class="contact-content" data-aos="fade-up" data-aos-delay="200">
+                    <p class="contact-text">
+                        ¿Interesado en trabajar juntos? No dudes en contactarme
+                    </p>
+                    <div class="contact-methods">
+                        <a href="mailto:marxcuadros24@gmail.com" class="contact-item" data-aos="fade-right" data-aos-delay="300">
+                            <span class="contact-icon">✉</span>
+                            <span>marxcuadros24@gmail.com</span>
+                        </a>
+                        <a href="https://github.com/marxcuadros24-png" target="_blank" class="contact-item" data-aos="fade-right" data-aos-delay="400">
+                            <span class="contact-icon">⚡</span>
+                            <span>github.com/marxcuadros24-png</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- AOS Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
